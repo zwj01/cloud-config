@@ -85,7 +85,7 @@ eureka:
       defaultZone: http://eureka0.com:8000/eureka/,http://eureka1.com:8001/eureka/,http://eureka2.com:8002/eureka/
 #      defaultZone: http://172.16.7.119:28761/eureka/ #指定服务注册中心
 server:
-  port: 8762
+  port: 8765
   servlet: 
     context-path: /databank-dbserver
 ribbon:
