@@ -3,7 +3,7 @@
 
 spring:
   application:
-    name: cloud-consumer-order
+    name: cloud-consumer-orderrb
 
 
 eureka:
