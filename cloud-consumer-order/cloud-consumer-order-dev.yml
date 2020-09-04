@@ -2,8 +2,6 @@
 #  port: 81
 
 spring:
-  application:
-    name: cloud-consumer-orderrb
   datasource:
     name: test
 
