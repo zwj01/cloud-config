@@ -30,11 +30,11 @@ spring:
         removeAbandoned: true
         removeAbandonedTimeout: 60
         logAbandoned: true
-eureka:
-  client:
-    service-url:
+#eureka:
+#  client:
+#    service-url:
 #      defaultZone: http://172.16.7.119:28761/eureka/
-      defaultZone: http://localhost:8002/eureka/
+#      defaultZone: http://localhost:8002/eureka/
 ribbon:
 #请求处理超时时间
   ReadTimeout: 60000
