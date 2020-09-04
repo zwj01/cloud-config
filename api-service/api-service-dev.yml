@@ -40,13 +40,7 @@ ribbon:
   ReadTimeout: 60000
 #  请求连接超时时间
   ConnectTimeout: 60000
-eureka:
-  enable: true
-  instance:
-    lease-expiration-duration-in-seconds: 30
-    lease-renewal-interval-in-seconds: 10
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
 #springboot   mybatis
 #jiazai mybatis peizhiwenjian
 mybatis:
