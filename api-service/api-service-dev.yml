@@ -40,8 +40,8 @@ ribbon:
   ReadTimeout: 60000
 #  请求连接超时时间
   ConnectTimeout: 60000
-  eureka:
-    enable: true
+eureka:
+  enable: true
   instance:
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
