@@ -1,11 +1,11 @@
-server:
-  port: 9004
-  servlet:
-      context-path: /databank-apiserver
+#server:
+#  port: 9004
+#  servlet:
+#      context-path: /databank-apiserver
 
 spring:
-  application:
-    name: api-service
+#  application:
+#    name: api-service
   datasource:
     name: test
     url: jdbc:mysql://172.16.7.119:23306/databank_api_platform?useSSL=false&characterEncoding=utf8
