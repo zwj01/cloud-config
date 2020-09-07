@@ -12,6 +12,8 @@ kafka:
     buffer.memory: 33554432
     key.serializer: org.apache.kafka.common.serialization.StringSerializer
     value.serializer: org.apache.kafka.common.serialization.StringSerializer
+  consumer:
+    group.id: databank-metadata
     #offset不存在时的处理方式
     #earliest: 重置至最早的offset
     #latest: 重置至最晚的offset
