@@ -56,3 +56,7 @@ pagehelper:
   params: count==countSql
   returnPageInfo: check
 
+kafka:
+  consumer:
+    group.id: databank-metadata3
+
