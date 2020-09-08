@@ -1,9 +1,9 @@
 #server:
 #  port: 81
 
-spring:
-  datasource:
-    name: test
+#spring:
+#  datasource:
+#    name: test
 
 
 
