@@ -1,4 +1,5 @@
-person:
-  name: zslis
-  age: 1315
-  gender: nvn
+datastation:
+  person:
+    name: zslis
+    age: 1315
+    gender: nvn
