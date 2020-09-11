@@ -27,3 +27,7 @@ kafka:
     session.timeout.ms: 100000
     key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+mongodb:
+  host: 172.16.7.140
+  port: 27017
+  databaseName: linktraceDto
