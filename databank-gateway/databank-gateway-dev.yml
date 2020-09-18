@@ -1,0 +1,174 @@
+server:
+  port: 9001
+#  port: 9001
+  max-http-header-size: 2MB
+spring:
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: true #开启重试机制, pom.xml需加入spring-retry和spring-boot-starter-aop 启动入口加@EnableRetry
+  jackson:
+    default-property-inclusion: non_null
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  application:
+    name: databank-gateway
+  redis:
+    host: 172.16.7.119
+    port: 26379
+    redisson:
+        config: classpath:redisson-dev.yml
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: -1
+      max-request-size: -1
+  tomcat:
+    max-http-post-size:-1
+eureka:
+  instance:
+    #断开时间
+    lease-expiration-duration-in-seconds: 30
+    #心跳时间
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:80000/eureka/
+#      defaultZone: http://172.16.7.119:28761/eureka/
+ribbon:
+  ReadTimeout: 30000  #读超时
+  ConnectTimeout: 5000 #连接超时
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule  #负载策略[RandomRule:随机,RoundRobinRule:轮询,RetryRule:重试,WeightedResponseTimeRule:响应时间权重,BestAvailableRule:最空闲连接]
+  OkToRetryOnAllOperations: true #是否重试
+  MaxAutoRetriesNextServer: 3 #切换实例的重复次数
+  MaxAutoRetries: 1 #当前实例的重复次数
+  MaxTotalhttpConnections: 2000 #最大HTTP 连接数
+  eureka:
+    enable: true
+hystrix:
+  metrics:
+    enabled: true
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+zuul: #zuul 配置详情
+  SendErrorFiter:
+    error:
+      disable: true
+  ribbonIsolationStrategy: THREAD
+  semaphore:
+    max-semaphores: 5000  # 信号量大小
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 10000
+    max-per-route-connections: 200
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    DATABANK-DEMO:
+      serviceId: DATABANK-DEMO
+      path: /demo/*/hallo/*/hallo
+#      url: http://127.0.0.1:9000/demo/*/hallo/*/hallo
+      stripPrefix: false
+
+    DATABANK-AUTHAPI:
+      serviceId: DATABANK-AUTHAPI
+      path: /databank-authapi/**
+      stripPrefix: false
+    API-SERVER:
+      serviceId: API-SERVICE
+      path: /databank-apiserver/**
+      stripPrefix: false
+    DATABANK-DBSERVER:
+      serviceId: DATABANK-DBSERVER
+      path: /databank-dbserver/**
+      stripPrefix: false
+    YD-MONITOR:
+      serviceId: YD-MONITOR
+      path: /yd-monitor/**
+      stripPrefix: false
+    DATABANK-METIS:
+      serviceId: DATABANK-METIS
+      path: /databank-metis/**
+      stripPrefix: false
+    YDLOG-PENTAHOLOGS:
+      serviceId: YDLOG-PENTAHOLOGS
+      path: /ydlog-pentahologs/**
+      stripPrefix: false
+    DATABANK-CAPACITY:
+      serviceId: DATABANK-CAPACITY
+      path: /databank-capacity/**
+      stripPrefix: false
+    SALT:
+      serviceId: SALT
+      path: /salt/**
+      stripPrefix: false
+    DATABANK-MONITORINDEX:
+      serviceId: DATABANK-MONITORINDEX
+      path: /databank-monitorindex/**
+      stripPrefix: false
+    DATABANK-ABNORMALMONITOR:
+      serviceId: DATABANK-ABNORMALMONITOR
+      path: /databank-abnormalmonitor/**
+      stripPrefix: false
+    DATABANK-METADATA:
+      serviceId: DATABANK-METADATA
+      path: /databank-metadata/**
+      stripPrefix: false
+    DATABANK-DATATASK:
+      serviceId: DATABANK-DATATASK
+      path: /databank-datatask/**
+      stripPrefix: false
+    DATABANK-FILEMANAGEMENT:
+      serviceId: DATABANK-FILEMANAGEMENT
+      path: /databank-filemanagement/**
+      stripPrefix: false
+    DATABANK-AIRFLOW:
+      serviceId: DATABANK-AIRFLOW
+      path: /databank-airflow/**
+      stripPrefix: false
+    DATABANK-CMDBA:
+      serviceId: DATABANK-CMDBA
+      path: /databank-cmdb/**
+      stripPrefix: false
+    DATABANK-DATAAUTHORITY:
+      serviceId: DATABANK-DATAAUTHORITY
+      path: /databank-dataauthority/**
+      stripPrefix: false
+feign:
+  client:
+    config:
+      defalut:
+        loggerLevel: full
+        connectTimeout: 5000
+        retryer: feign.Retryer.Default
+        decode404: true
+databank:
+  zuul:
+    routes:
+      testConnection:
+        path: /databank-metadata/database/testConnection
+        connectTimeout: 30000
+        socketTimeout: 30000
+        connectRequestTimeout: 30000
+      addStorageInfo:
+        path: /databank-metadata/addStorage/addStorageInfo
+        connectTimeout: 30000
+        socketTimeout: 30000
+        connectRequestTimeout: 30000
+  login:
+    #密码出错多少次后锁定用户
+    userPasswordErrorMax: 5
+    #锁定后重试时间 （秒）
+    timeout: 300
+
+
