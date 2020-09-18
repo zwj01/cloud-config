@@ -40,7 +40,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:80000/eureka/
+      defaultZone: http://localhost:8000/eureka/
 #      defaultZone: http://172.16.7.119:28761/eureka/
 ribbon:
   ReadTimeout: 30000  #读超时
