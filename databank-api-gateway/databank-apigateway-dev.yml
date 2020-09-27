@@ -1,0 +1,73 @@
+server:
+  port: 29099
+
+spring:
+  application:
+    name: databank-api-gateway
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  datasource:
+    url: jdbc:mysql://172.16.7.119:23306/databank_api_platform?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: huitone2214
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 0
+    host: 172.16.7.119
+    port: 26379
+    timeout: PT2S
+    jedis:
+      pool:
+        max-active: 200
+        min-idle: 10
+        max-idle: 50
+        max-wait: PT100S
+  main:
+    allow-bean-definition-overriding: true
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.huitone.gateway.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+zuul:
+  data-bank:
+    data-api-uri: /databank-apiserver/source/getAwayeExecutesql
+    data-api-service:  api-service
+  host:
+    connect-timeout-millis: 5000
+    socket-timeout-millis: 10000
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+#      defaultZone: http://databank.eureka:28761/eureka
+      defaultZone: http://localhost:8000/eureka
+    #表示eureka client间隔多久去拉取服务注册信息，默认为30秒，
+    #对于api-gateway，设置间隔大一点
+    registry-fetch-interval-seconds: 60
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout: #配置命令的执行，是否会超时
+          enabled: true
+        isolation: #命令的执行超时时间  超时将执行回退
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
