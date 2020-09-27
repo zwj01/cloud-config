@@ -1,0 +1,93 @@
+server:
+  port: 9004
+  servlet:
+    multipart:
+      max-file-size: 2M
+    context-path: /databank-metadata
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+  eureka:
+    enable: true
+eureka:
+  instance:
+    #断开时间
+    lease-expiration-duration-in-seconds: 30
+    #心跳时间
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+#      defaultZone: http://172.16.7.119:28761/eureka/
+      defaultZone: http://localhost:8000/eureka/
+spring:
+  application:
+    name: databank-metadata
+  redis:
+    host: 172.16.7.119
+    port: 26379
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  datasource:
+    name: databank_authorization
+    url: jdbc:mysql://172.16.7.119:23306/databank_metadata?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&&allowMultiQueries=true
+    username: root
+    password: huitone2214
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+mybatis:
+  mapper-locations: classpath:mapper/*.xml #这里是mapper的配置文件
+  type-aliases-package: com.htgx.databank.dataMeta.entity #这里是实体类的包
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+#配置分页插件pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#自定义配置标签
+customize:
+  fileUploadUrl : http://172.16.7.119:29009/databank-filemanagement/file/upload
+  fileDownloadUrl : http://172.16.7.119:29009/databank-filemanagement/file/download
+  fileDeleteUrl : http://172.16.7.119:29009/databank-filemanagement/file/delete
+
+#cdh数据库连接
+cdh:
+  url: jdbc:mysql://172.16.7.140:3306/cm?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&&allowMultiQueries=true
+  username: root
+  password: htgx123!@#
+
+#组件升级配置
+component-upgrade:
+  #组件升级接口服务地址
+  server-url: http://172.16.7.119:28000/datastation-deploy-api/upgrade
+  #升级完监听topic
+  topic: datastation.deploy.flume
+defaultToken: f66944ff-6968-4210-abc4-f537d7a21a4f
+    
+system: 
+  taskExecutor:
+    corePoolSize: 10
+    maxPoolSize: 300
+    queueCapacity: 5000
