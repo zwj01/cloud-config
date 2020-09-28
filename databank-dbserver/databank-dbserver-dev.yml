@@ -105,7 +105,11 @@ pagehelper:
 #系统管理默认菜单id
 system: 
   management: 
-    menuId: 14
+    menuId: 383
+  taskExecutor:
+    corePoolSize: 10
+    maxPoolSize: 300
+    queueCapacity: 5000
     
 #davinci创建用户接口访问地址  开发地址为服务器地址
 davinci-api-url: http://172.16.7.119:8181/dev/api/v3/login/createUser
