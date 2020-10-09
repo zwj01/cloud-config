@@ -129,4 +129,4 @@ datastation:
     timeout: 86400
 logging:
   level:
-   org.springframework.data.mongodb.core: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
