@@ -127,3 +127,6 @@ datastation:
   license:
     licenseKey: datastation:license
     timeout: 86400
+logging:
+  level:
+   org.springframework.data.mongodb.core: DEBUG
