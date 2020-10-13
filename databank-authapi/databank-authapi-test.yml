@@ -1,0 +1,56 @@
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: health
+        exclude: info,env,beans
+
+server:
+  port: 8001 #端口
+  max-http-header-size: 2MB
+  tomcat:
+    max-http-post-size: 2MB
+  servlet:
+    multipart:
+      max-file-size: 2MB
+    context-path: /databank-authapi
+spring:
+  application:
+    name: databank-authapi
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  # 打印横幅
+  main:
+    bannerMode: "console"
+    allow-bean-definition-overriding : true
+  data:
+    mongodb:
+      host: 172.16.8.12
+      port: 27017
+      database: datastation
+
+  #项目名称#不开启默认的资源处理 #是否全局抛出异常
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  eureka:
+    enable: true
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30 # 心跳，租约续约频率，单位：秒
+    lease-renewal-interval-in-seconds: 10 #  eureka server多久没有收到心跳，则表示对应的实例过期，单位：秒。
+    health-check-url-path: /actuator/health
+    statusPageUrlPath: /actuator/health
+    prefer-ip-address: true #以IP地址注册到服务中心，相互注册使用IP地址
+    # ip-address: 127.0.0.1 #强制指定IP地址，默认会获取本机的IP地址
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${management.server.port}
+  client:
+    fetch-registry: true #通过设置fetch-registry与register-with-eureka 表明自己是一个eureka服务
+    register-with-eureka: true #服务注册中心也会将自己作为客户端来尝试注册自己,为true（默认）时自动生效
+    service-url:
+      defaultZone: http://172.16.8.11:28761/eureka/
