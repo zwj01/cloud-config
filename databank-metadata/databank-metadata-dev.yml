@@ -78,6 +78,12 @@ cdh:
   username: root
   password: htgx123!@#
 
+cm:
+  yarnurl: http://172.16.7.143:7180/api/v16/clusters/Cluster%201/services/yarn/config
+  refreshurl: http://172.16.7.143:7180/api/v16/clusters/Cluster%201/commands/poolsRefresh
+  username: admin
+  password: admin
+
 #组件升级配置
 component-upgrade:
   #组件升级接口服务地址

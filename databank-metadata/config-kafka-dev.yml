@@ -1,6 +1,6 @@
 datastation:
   kafka:
-    bootstrap.servers: 172.16.7.119:19092
+    bootstrap.servers: 172.16.8.2:9092,172.16.8.4:9092,172.16.8.5:9092
     producer:
       # 生产者是否会等待确认信号 0 不等待 1 有可能丢失 -1 确保设置
       acks: -1
