@@ -1,0 +1,18 @@
+application:
+  name: databank-airflow
+redis:
+  host: 172.16.7.119
+  port: 26379
+mongodb:
+  host: 172.16.7.140
+  port: 27017
+mysql_airflow:
+  host: 172.16.7.119
+  port: 23306
+  username: root
+  password: huitone2214
+mysql_datatask:
+  host: 172.16.7.119
+  port: 23306
+  username: root
+  password: huitone2214
