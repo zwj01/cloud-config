@@ -21,6 +21,10 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8000/eureka/
+  servlet:
+    multipart:
+      max-request-size: -1
+      max-file-size: -1
 spring:
 #  application:
 #    name: databank-filemanagement
