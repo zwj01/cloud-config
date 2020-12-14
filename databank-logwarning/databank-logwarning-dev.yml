@@ -1,0 +1,54 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /databank-logwarning
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+#      defaultZone: http://172.16.7.119:28761/eureka/
+      defaultZone: http://localhost:8000/eureka/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.htgx.databank.logwarning.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#配置分页插件pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+spring:
+  datasource:
+    url: jdbc:mysql://172.16.7.119:23306/databank_logwarning?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&&allowMultiQueries=true
+    username: root
+    password: huitone2214
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  application:
+    name: databank-logwarning
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
