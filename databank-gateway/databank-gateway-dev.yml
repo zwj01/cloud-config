@@ -20,6 +20,7 @@ spring:
     port: 26379
     redisson:
         config: classpath:redisson-dev.yml
+    timeout: PT2S
     jedis:
       pool:
         max-active: 200
