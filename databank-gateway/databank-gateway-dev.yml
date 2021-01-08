@@ -20,11 +20,12 @@ spring:
     port: 26379
     redisson:
         config: classpath:redisson-dev.yml
-    pool:
-      max-active: 200
-      min-idle: 10
-      max-idle: 50
-      max-wait: PT100S
+    jedis:
+      pool:
+        max-active: 200
+        min-idle: 10
+        max-idle: 50
+        max-wait: PT100S
   servlet:
     multipart:
       enabled: true
