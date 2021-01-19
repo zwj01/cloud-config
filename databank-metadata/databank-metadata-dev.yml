@@ -68,9 +68,10 @@ pagehelper:
 
 #自定义配置标签
 customize:
-  fileUploadUrl : http://172.16.7.119:29009/databank-filemanagement/file/upload
-  fileDownloadUrl : http://172.16.7.119:29009/databank-filemanagement/file/download
-  fileDeleteUrl : http://172.16.7.119:29009/databank-filemanagement/file/delete
+   fileUploadUrl : http://172.16.7.119:29009/databank-filemanagement/file/upload
+   fileDownloadUrl : http://172.16.7.119:29009/databank-filemanagement/file/download
+   fileDeleteUrl : http://172.16.7.119:29009/databank-filemanagement/file/delete
+   bigDataEnv : 0 ## 大数据环境 0公司(cdh)  1华为云
 
 #cdh数据库连接
 cdh:
