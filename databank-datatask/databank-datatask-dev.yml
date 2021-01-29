@@ -119,4 +119,8 @@ system:
     corePoolSize: 10
     maxPoolSize: 300
     queueCapacity: 5000
+  demo: true
+data:
+  task:
+    count: 100000
    
