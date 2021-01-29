@@ -99,34 +99,35 @@ system:
     maxPoolSize: 300
     queueCapacity: 5000
   demo: true
-data:
-  api:
-    count: 100
-    week: 12
-    day: 1
-  project:
-    count: 145
-    week: 12
-    day: 1
-  meta:
-    source:
-      count: 10000
+homepage:
+  data:
+    api:
+      count: 100
       week: 12
-    module:
-      count: 1345667
-      week: 24
-    table:
-     count: 12545
-     week: 12
-  task:
-    top10: 2454656,24556,23055,22455,21455,13455,2345,2045,1345,987
-  quality:
-    rules:
-      count: 134
-      week: 10
-    table:
+      day: 1
+    project:
       count: 145
       week: 12
+      day: 1
+    meta:
+      source:
+        count: 10000
+        week: 12
+      module:
+        count: 1345667
+        week: 24
+      table:
+       count: 12545
+       week: 12
+    task:
+      top10: 2454656,24556,23055,22455,21455,13455,2345,2045,1345,987
+    quality:
+      rules:
+        count: 134
+        week: 10
+      table:
+        count: 145
+        week: 12
 
 
 
