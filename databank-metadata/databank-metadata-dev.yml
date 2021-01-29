@@ -108,3 +108,14 @@ data:
     count: 145
     week: 12
     day: 1
+  meta:
+    source:
+      count: 10000
+      week: 12
+    module:
+      count: 1345667
+      week: 24
+    table:
+     count: 12545
+     week: 12
+
