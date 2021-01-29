@@ -120,7 +120,7 @@ data:
      week: 12
   task:
     top10: 2454656,24556,23055,22455,21455,13455,2345,2045,1345,987
-  quarity:
+  quality:
     rules:
       count: 134
       week: 10
