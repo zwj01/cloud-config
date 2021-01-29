@@ -98,3 +98,13 @@ system:
     corePoolSize: 10
     maxPoolSize: 300
     queueCapacity: 5000
+  demo: true
+data:
+  api:
+    count: 100
+    week: 12
+    day: 1
+  project:
+    count: 145
+    week: 12
+    day: 1
