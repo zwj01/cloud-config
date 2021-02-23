@@ -30,6 +30,17 @@ spring:
     removeAbandoned: true
     removeAbandonedTimeout: 60
     logAbandoned: true
+  redis:
+    database: 0
+    host: 172.16.7.119
+    port: 26379
+    timeout: PT2S
+    jedis:
+      pool:
+        max-active: 200
+        min-idle: 10
+        max-idle: 50
+        max-wait: PT100S
 eureka:
   client:
     service-url:
